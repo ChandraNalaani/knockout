@@ -1,0 +1,34 @@
+body {
+    font-family: Helvetica,Arial;
+}
+ul {
+    background-color: #CCDDEE;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    list-style-type: none;
+    margin: 1em 0;
+    padding: 1em;
+}
+ul li a {
+    color: Gray;
+    font-size: 90%;
+    text-decoration: none;
+}
+ul li a:hover {
+    text-decoration: underline;
+}
+input:not([type]), input[type="text"] {
+    width: 30em;
+}
+input[disabled] {
+    background-color: Silver;
+    border-color: Silver;
+    text-decoration: line-through;
+}
+textarea {
+    height: 6em;
+    width: 30em;
+}
+form {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}

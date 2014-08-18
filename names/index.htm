@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Names | Knockout</title>
+<link rel="stylesheet" href="css/styles.css" />
+<!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+    <header>
+     <h1>Names</h1>
+    </header>
+    <section>
+        <article>
+            <p>First name: <input data-bind="value: firstName" /></p>
+            <p>Last name: <input data-bind="value: lastName" /></p>
+        </article>
+        <article>
+            <p>First name: <strong data-bind="text: firstName"></strong></p>
+            <p>Last name: <strong data-bind="text: lastName"></strong></p>
+            <p>Full name: <strong data-bind="text: fullName"></strong></p>
+            <button data-bind="click: capitalizeLastName">Inside voices, please.</button>
+        </article>
+    </section>
+    <footer>
+     <p>"I call everyone 'Darling' because I can't remember their names." - Zsa Zsa Gabor</p>
+    </footer>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/knockout-2.2.1.js"></script>
+<script src="js/behavior.js"></script>
+</body>
+</html>

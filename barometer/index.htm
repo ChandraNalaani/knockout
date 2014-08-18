@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Barometer</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/start/jquery-ui.css" rel="stylesheet" />
+<!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+    <header>
+     <h1>Barometer</h1>
+    </header>
+    <section>
+        <article>
+            <h3 data-bind="text: question"></h3>
+            <p>Please distribute <b data-bind="text: pointsBudget"></b> points between the following options.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: answers">
+                    <tr>
+                        <td data-bind="text: answerText"></td>
+                        <td data-bind="starRating: points"></td>
+                    </tr>    
+                </tbody>
+            </table>
+            <h3 data-bind="fadeVisible: pointsUsed() > pointsBudget">You've used too many points! Please remove some.</h3>
+            <p>You've got <b data-bind="text: pointsBudget - pointsUsed()"></b> points left to use.</p>
+            <button data-bind="jqButton: { enable: pointsUsed() <= pointsBudget }, click: save">Finished</button>
+        </article>
+    </section>
+    <footer>
+     <p>"Not everything that counts can be counted, and not everything that can be counted counts." - Albert Einstein</p>
+    </footer>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+<script src="js/knockout-2.2.1.js"></script>
+<script src="js/behavior.js"></script>
+</body>
+</html>

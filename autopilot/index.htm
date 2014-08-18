@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Autopilot 1.0</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/start/jquery-ui.css" rel="stylesheet" />
+<!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+    <header>
+        <hgroup>
+            <h1>Autopilot 1.0</h1>
+            <h2>Eliminate. Simplify. Automate. Delegate.</h2>
+            <hr />
+        </hgroup>
+    </header>
+    <section>
+        <article>
+            <h3>Tasks</h3>
+            <form data-bind="submit: addTask">
+                Add task: <input data-bind="value: newTaskText" placeholder="What's going to move you closer to where you want to be?" />
+                <button type="submit">Add</button>
+            </form>
+            <ul data-bind="foreach: tasks, visible: tasks().length > 0">
+                <li>
+                    <input type="checkbox" data-bind="checked: isDone" />
+                    <input data-bind="value: title, disable: isDone" />
+                    <a href="#" data-bind="click: $parent.removeTask">Delete</a>
+                </li>
+            </ul>
+            <p>You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+            <span data-bind="visible: incompleteTasks().length == 0"> - go outside!</span></p>
+            <button data-bind="click: save">Save</button>
+
+        </article>
+    </section>
+    <hr />
+    <footer>
+     <p>"Never automate something that can be eliminated, and never delegate something that can be automated or streamlined." - Timothy Ferris</p>
+    </footer>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+<script src="js/knockout-2.2.1.js"></script>
+<script src="js/behavior.js"></script>
+</body>
+</html>

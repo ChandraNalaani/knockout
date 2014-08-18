@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Carrier Pigeon</title>
+<link rel="stylesheet" href="css/styles.css" />
+<!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+    <header>
+     <h1>Carrier Pigeon</h1>
+    </header>
+    <section>
+        <article>
+            <ul class="folders" data-bind="foreach: folders">
+                <li data-bind="text: $data,
+                   css: { selected: $data == $root.chosenFolderId() },
+                   click: $root.goToFolder"></li>
+            </ul>
+            <table class="mails" data-bind="with: chosenFolderData">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: mails">
+                    <tr data-bind="click: $root.goToMail">
+                        <td data-bind="text: from"></td>
+                        <td data-bind="text: to"></td>
+                        <td data-bind="text: subject"></td>
+                        <td data-bind="text: date"></td>
+                    </tr>     
+                </tbody>
+            </table>
+        </article>
+    </section>
+    <section>
+        <article>
+            <div class="viewMail" data-bind="with: chosenMailData">
+                <div class="mailInfo">
+                    <h1 data-bind="text: subject"></h1>
+                    <p><label>From</label>: <span data-bind="text: from"></span></p>
+                    <p><label>To</label>: <span data-bind="text: to"></span></p>
+                    <p><label>Date</label>: <span data-bind="text: date"></span></p>
+                </div>
+                <p class="message" data-bind="html: messageContent" />
+            </div>
+        </article>
+    </section>
+    <footer>
+     <p>"The single biggest problem in communication is the illusion that it has taken place." - George Bernard Shaw</p>
+    </footer>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/knockout-2.2.1.js"></script>
+<script src="js/sammy-latest.min.js"></script>
+<script src="js/behavior.js"></script>
+</body>
+</html>

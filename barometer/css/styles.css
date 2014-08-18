@@ -1,0 +1,36 @@
+body {
+    font-family: Helvetica,Arial;
+}
+input:not([type]), input[type="text"], input[type="password"], select {
+    background-color: #FFFFCC;
+    border: 1px solid gray;
+    padding: 2px;
+}
+table {
+    background-color: #CCDDEE;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    padding: 1em;
+}
+table th {
+    text-align: left;
+}
+table th:last-child {
+    min-width: 130px;
+}
+.starRating span {
+    background-image: url("../img/stars.png");
+    background-position: -24px 0;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+}
+.starRating span.chosen {
+    background-position: 0 0;
+}
+.starRating:hover span {
+    background-position: -24px 0;
+}
+.starRating:hover span.hoverChosen {
+    background-position: 0 0;
+}

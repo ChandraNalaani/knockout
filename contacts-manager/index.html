@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Knockout</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<!-- data-bind attribute tells knockout that #people gets data from observableArray called people and stores it in viewModel. KO's foreach more efficient than tmpl's {{each}} to iterate thru data because observableArray monitors changes, auto-updates templates (tmpl's {{each}} would mean entire template re-rendered for ea change). -->
+<div id="people" data-bind="template: { name: 'personTemplate', foreach: people }">
+    <!-- open form that accepts new data. No need for event handler - just specify method name & KO attaches handler, stops link from being followed -->
+    <a href="#" title="Add new person" data-bind="click: showForm, visible: displayButton">Add person</a>
+    <!-- add paging to view -->
+    <nav id="paging"> <a id="all" href="#" data-bind="click: function () { pageSize(ko.utils.unwrapObservable(people).length); currentPage(0); }, css: { disabled: pageSize() === ko.utils.unwrapObservable(people).length }">Show all</a> <a id="last" title="Last Page" href="#" data-bind="click: function() { currentPage(totalPages() - 1); }, css: { disabled: currentPage() === totalPages() - 1 }">Last</a> <a id="next" title="Next Page" href="#" data-bind="click: function (event) { navigate(event) }, css: { disabled: currentPage() === totalPages() - 1 }">»</a>
+        <ul data-bind="template: 'pagingTemplate'"><!-- to be populated with # of pgs -->
+        </ul>
+        <a id="prev" title="Previous Page" href="#" data-bind="click: function (event) { navigate(event) }, css: { disabled: currentPage() === 0 }">«</a> <a id="first" title="First Page" href="#" data-bind="click: function() { currentPage(0); }, css: { disabled: currentPage() === 0 }">First</a> </nav>
+    <!-- /#paging -->
+<label id="pageSize">Show <input data-bind="value: pageSize" /> per page</label>
+    <script id="pagingTemplate" type="text/x-jquery-tmpl">
+                {{each(i) ko.utils.range(1, totalPages)}} 
+                    <li>
+                      <a href="#" title="View page ${ i + 1 }" data-bind="click: function() { 
+                        currentPage(i) }, 
+                        css: { on: i === currentPage() }">
+                        ${ i + 1 }
+                      </a>
+                    </li>
+                {{/each}}
+            </script>
+    <!-- /#pagingTemplate -->
+    <fieldset data-bind="visible: displayForm">
+        <div class="details">
+            <label>Name:
+                <input id="name" />
+            </label>
+            <label>Address:
+                <input id="address" />
+            </label>
+            <label>Tel:
+                <input id="tel" />
+            </label>
+            <label>Site:
+                <input id="site" />
+            </label>
+        </div>
+        <!-- /.details -->
+        <div class="img">
+            <label>Picture:
+                <input id="pic" type="file" />
+                <!-- just for example -->
+            </label>
+        </div>
+        <!-- /.img -->
+        <div class="tools">
+            <button data-bind="click: addPerson">Add</button>
+            <button data-bind="click: hideForm">Cancel</button>
+        </div>
+        <!-- /.tools -->
+    </fieldset>
+</div>
+<!-- /#people -->
+<script id="personTemplate" type="text/x-jquery-tmpl">
+    <section class="person">
+        <img src="../img/person.png" alt="${ name }" />
+        <h1>${ name }</h1>
+        <address>${ address }</address>
+        <span class="tel">${ tel }</span>
+        <a href="http://${ site }" title="Visit site">${ site }</a>
+        <div class="tools">
+            <button data-bind="click: deleteMe">Delete</button>
+            <!-- updates viewModel, not just view -->
+        </div>
+    </section>
+</script>
+<script src="js/jquery-1.6.2.min.js"></script>
+<script src="js/jquery.tmpl.js"></script>
+<script src="js/knockout-1.2.1.js"></script>
+<script src="js/behavior.js"></script>
+</body>
+</html>
